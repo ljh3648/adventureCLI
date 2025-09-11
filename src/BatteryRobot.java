@@ -39,6 +39,7 @@ public class BatteryRobot extends Robot {
     public void showPowerControlMenu() {
         super.showPowerControlMenu();
         System.out.print("3. 배터리 충전\n");
+        System.out.print("선택: ");
     }
 
     @Override

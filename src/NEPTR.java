@@ -1,4 +1,5 @@
 public class NEPTR extends BatteryRobot {
+    private boolean isBusy = false;
     private double forgetToThrowPieChance;
 
     NEPTR(){
@@ -13,19 +14,20 @@ public class NEPTR extends BatteryRobot {
 
     void throwPie() {
         System.out.printf("[Robot: %s]: Never ending pie throwing ~~\n", name);
+        isBusy = true;
 
         while(true) {
             if(Math.random() < forgetToThrowPieChance) {
                 try {
-                    System.out.printf("[Robot: %s]: 음...\n", name);
+                    System.out.printf("\n[Robot: %s]: 음...\n", name);
                     Thread.sleep(700);
-                    System.out.printf("[Robot: %s]: 내가 뭐하고 있더라...\n", name);
+                    System.out.printf("\n[Robot: %s]: 내가 뭐하고 있더라...\n", name);
                     Thread.sleep(2000);
-                    System.out.printf("[Robot: %s]: 으으음...\n", name);
+                    System.out.printf("\n[Robot: %s]: 으으음...\n", name);
                     Thread.sleep(1000);
-                    System.out.printf("[Robot: %s]: 음..\n", name);
+                    System.out.printf("\n[Robot: %s]: 음..\n", name);
                     Thread.sleep(2000);
-                    System.out.printf("[Robot: %s]: 이제 뭐하지 ?\n", name);
+                    System.out.printf("\n[Robot: %s]: 이제 뭐하지 ?\n", name);
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -34,7 +36,7 @@ public class NEPTR extends BatteryRobot {
             }
 
             if(useBattery(5)) {
-                System.out.printf("[Robot: %s]: \uD83E\uDD67 파이를 던지는 중\n", name);
+                System.out.printf("\n[Robot: %s]: \uD83E\uDD67 파이를 던지는 중\n", name);
             } else {
                 break;
             }
@@ -45,6 +47,8 @@ public class NEPTR extends BatteryRobot {
                 throw new RuntimeException(e);
             }
         }
+
+        isBusy = false;
     }
 
     @Override

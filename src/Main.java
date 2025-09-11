@@ -8,7 +8,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         List<Robot> robots = new ArrayList<>();
-        robots.add(new BMO());
+        BMO bmo = new BMO();
+        robots.add(bmo);
+        Thread thread = new Thread(bmo);
+        thread.start();
         robots.add(new NEPTR());
 
         System.out.print("Adventure CLI!\n");
