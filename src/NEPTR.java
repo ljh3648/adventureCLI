@@ -1,9 +1,8 @@
-public class NEPTR extends Robot{
+public class NEPTR extends BatteryRobot{
     private double forgetToThrowPieChance;
-    private static int serialCount = 0;
 
     NEPTR(){
-        super("NEPTR_" + serialCount++);
+        super("NEPTR");
         forgetToThrowPieChance = 0.1;
     }
 
@@ -14,9 +13,6 @@ public class NEPTR extends Robot{
 
 
     void throwPie() {
-        // 배터리 on인 상태에서만 함수가 작동해야 하니까 체크하는게 필요할거 같은데.
-
-        // 영원히 끝나지 않는 무한 반복문?
         System.out.printf("[Robot: %s]: Never ending pie throwing ~~\n", name);
 
         while(true) {
@@ -36,9 +32,7 @@ public class NEPTR extends Robot{
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
         }
-        // 그런데 확률에 따라서 파이를 던지는걸 까먹고 스레드가 종료되어야 함
     }
 
     @Override

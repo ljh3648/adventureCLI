@@ -1,8 +1,6 @@
-public class BMO extends Robot{
-    private static int serialCount = 0;
-
+public class BMO extends BatteryRobot{
     BMO() {
-        super("BMO_" + serialCount++); // 여기에 BMO가 0부터 1씩 증가하는 순으로 자동적으로 네이밍이 되도록 하고 싶은데
+        super("BMO");
     }
 
     public void quietMode(int sec) {
@@ -11,14 +9,14 @@ public class BMO extends Robot{
         }
         System.out.printf("[Robot: %s]: 저는 %d 동안 응답 안해요! 안녕~\n", name, sec);
         try {
-            Thread.sleep(1000);
+            Thread.sleep(sec);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void fakeFarting() {
-        if(useBattery(5.0)){
+        if(useBattery(5)){
             System.out.printf("[Robot: %s]: poot! \uD83D\uDCA8 \uD83D\uDCA8 \uD83D\uDCA8 \n", name);
         }
     }
