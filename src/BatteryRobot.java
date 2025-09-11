@@ -6,8 +6,9 @@ public class BatteryRobot extends Robot {
         this.batteryLevel = 100;
     }
 
-    public void charge(int amount) {
-        batteryLevel += amount;
+    public void chargeBattery() {
+        batteryLevel = 100;
+        System.out.printf("[Robot: %s]: 배터리를 충전이 완료되었습니다.\n", name);
     }
 
     public boolean useBattery(int amount) {
@@ -19,14 +20,27 @@ public class BatteryRobot extends Robot {
         batteryLevel -= amount;
         return true;
     }
+
     @Override
     public void showStatus() {
         System.out.printf("[Robot: %s]: Power status: %s Battery level: %d\n", name, powerStatus ? "ON" : "OFF", batteryLevel);
     }
 
     @Override
-    public void showCommand() {
-        super.showCommand();
+    public void showPowerControlMenu() {
+        super.showPowerControlMenu();
         System.out.print("3. 배터리 충전\n");
+    }
+
+    @Override
+    public void powerController(int selectCommand) {
+        switch (selectCommand) {
+            case 3:
+                chargeBattery();
+                break;
+            default:
+                super.powerController(selectCommand);
+                break;
+        }
     }
 }

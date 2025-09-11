@@ -38,6 +38,22 @@ public class NEPTR extends BatteryRobot{
     @Override
     public void showCommand(){
         super.showCommand();
-        System.out.print("4. 파이 던지기\n");
+        System.out.print("1. 파이 던지기\n");
+        System.out.print("선택: ");
+    }
+
+    @Override
+    public void action(int selectCommand) {
+        if(powerStatus == false){
+            System.out.printf("[Robot: %s]: 전원을 먼저 켜주면 안될까요?\n", name);
+            return;
+        }
+        switch (selectCommand) {
+            case 1:
+                throwPie();
+                break;
+            default:
+                break;
+        }
     }
 }

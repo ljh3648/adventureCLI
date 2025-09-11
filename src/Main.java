@@ -19,11 +19,23 @@ public class Main {
 
             int key = 0;
             key = sc.nextInt();
+            Robot robot = null;
 
             switch (key){
                 case 1:
+                    showStatusRobots(robots);
                     break;
                 case 2:
+                    robot = selectRobots(sc, robots);
+                    robot.showPowerControlMenu();
+                    int selectPowerCommand = sc.nextInt();
+                    robot.powerController(selectPowerCommand);
+                    break;
+                case 3:
+                    robot = selectRobots(sc, robots);
+                    robot.showCommand();
+                    int selectCommand = sc.nextInt();
+                    robot.action(selectCommand);
                     break;
                 case 0:
                     isRunning = false;
@@ -33,16 +45,35 @@ public class Main {
                     System.out.print("[System]: 잘못된 입력입니다.\n");
                     break;
             }
+
         }
     }
 
     public static void showMainMenu() {
         System.out.print("========= Main Menu ==========\n");
         System.out.print("1. 로봇 상태\n");
-        System.out.print("2. 로봇 명령\n");
-        // 로봇 명령에는 그 로봇이 할 수 있는 기능들만 표시하고
-        // 기초적인 전원 관리 같은건 메인 메뉴에 빼둘까 고민되네
+        System.out.print("2. 로봇 전원 관리\n");
+        System.out.print("3. 로봇 명령\n");
         System.out.print("0. CLI 프로그램 종료.\n");
         System.out.print("선택: ");
+    }
+
+    public static void showStatusRobots(List<Robot> robots) {
+        for(Robot robot : robots) {
+            robot.showStatus();
+        }
+    }
+
+    public static Robot selectRobots(Scanner sc, List<Robot> robots){
+        System.out.print("========= Select Robot Menu ==========\n");
+        System.out.print("1. BMO\n");
+        System.out.print("2. NETPR\n");
+        System.out.print("선택: ");
+
+        int index = sc.nextInt();
+
+        // 잘못된 로봇을 선택하면 다시 선택 기능 추가 필요
+
+        return robots.get(index - 1);
     }
 }
