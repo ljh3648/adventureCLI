@@ -1,18 +1,22 @@
-public class BMO extends BatteryRobot{
+public class BMO extends BatteryRobot {
+    private boolean isBusy = false;
+
     BMO() {
         super("BMO");
     }
 
-    public void quietMode(int sec) {
+    public void quietMode() {
         if(!useBattery(1)){
             return;
         }
-        System.out.printf("[Robot: %s]: 저는 %d초 동안 응답 안해요! 안녕~\n", name, sec);
+        System.out.printf("[Robot: %s]: 저는 10초 동안 응답 안해요! 안녕~\n", name);
+        isBusy = true;
         try {
-            Thread.sleep(sec * 1000);
+            Thread.sleep(1000 * 10);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        isBusy = false;
         System.out.printf("[Robot: %s]: 저 일어났어요!\n", name);
     }
 
@@ -29,7 +33,7 @@ public class BMO extends BatteryRobot{
     @Override
     public void showCommand(){
         super.showCommand();
-        System.out.print("1. 5분간 응답하지 않기\n");
+        System.out.print("1. 10초간 응답하지 않기\n");
         System.out.print("2. 가짜 방귀 소리\n");
         System.out.print("3. 노래 부르기\n");
         System.out.print("선택: ");
@@ -43,7 +47,7 @@ public class BMO extends BatteryRobot{
         }
         switch (selectCommand) {
             case 1:
-                quietMode(10);
+                quietMode();
                 break;
             case 2:
                 fakeFarting();

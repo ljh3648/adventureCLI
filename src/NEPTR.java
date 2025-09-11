@@ -1,4 +1,4 @@
-public class NEPTR extends BatteryRobot{
+public class NEPTR extends BatteryRobot {
     private double forgetToThrowPieChance;
 
     NEPTR(){
@@ -11,17 +11,29 @@ public class NEPTR extends BatteryRobot{
         this.forgetToThrowPieChance = forgetToThrowPieChance;
     }
 
-
     void throwPie() {
         System.out.printf("[Robot: %s]: Never ending pie throwing ~~\n", name);
 
         while(true) {
             if(Math.random() < forgetToThrowPieChance) {
-                System.out.printf("[Robot: %s]: 이 로봇은 파이를 던지는 것을 까먹었습니다.\n", name);
+                try {
+                    System.out.printf("[Robot: %s]: 음...\n", name);
+                    Thread.sleep(700);
+                    System.out.printf("[Robot: %s]: 내가 뭐하고 있더라...\n", name);
+                    Thread.sleep(2000);
+                    System.out.printf("[Robot: %s]: 으으음...\n", name);
+                    Thread.sleep(1000);
+                    System.out.printf("[Robot: %s]: 음..\n", name);
+                    Thread.sleep(2000);
+                    System.out.printf("[Robot: %s]: 이제 뭐하지 ?\n", name);
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             }
 
-            if(useBattery(1)) {
+            if(useBattery(5)) {
                 System.out.printf("[Robot: %s]: \uD83E\uDD67 파이를 던지는 중\n", name);
             } else {
                 break;

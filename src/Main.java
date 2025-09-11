@@ -67,7 +67,7 @@ public class Main {
     public static Robot selectRobots(Scanner sc, List<Robot> robots){
         System.out.print("========= Select Robot Menu ==========\n");
         System.out.print("1. BMO\n");
-        System.out.print("2. NETPR\n");
+        System.out.print("2. NEPTR\n");
         System.out.print("선택: ");
 
         int index = sc.nextInt();

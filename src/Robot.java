@@ -15,7 +15,7 @@ public class Robot {
 
     public void powerOff() {
         powerStatus = false;
-        System.out.print("[Robot: %s]: Power OFF\n");
+        System.out.printf("[Robot: %s]: Power OFF\n", name);
     }
 
     public void showStatus() {
