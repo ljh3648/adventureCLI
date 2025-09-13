@@ -1,63 +1,28 @@
-public class NEPTR extends BatteryRobot implements Runnable {
-    private boolean isBusy;
+public class NEPTR extends BatteryRobot {
     private double forgetToThrowPieChance;
 
-    NEPTR(){
+    NEPTR() {
         super("NEPTR");
-        forgetToThrowPieChance = 0.1;
-    }
-
-    NEPTR(double forgetToThrowPieChance){
-        this();
-        this.forgetToThrowPieChance = forgetToThrowPieChance;
-    }
-
-    @Override
-    public void run() {
-        throwPie();
+        forgetToThrowPieChance = 0.07;
     }
 
     void throwPie() {
-        System.out.printf("[Robot: %s]: Never ending pie throwing ~~\n", name);
-        isBusy = true;
+        try {
+            while (!(Math.random() < forgetToThrowPieChance)) {
+                if (!useBattery(5)) return;
 
-        while(true) {
-            if(Math.random() < forgetToThrowPieChance) {
-                try {
-                    System.out.printf("\n[Robot: %s]: 음...\n", name);
-                    Thread.sleep(700);
-                    System.out.printf("\n[Robot: %s]: 내가 뭐하고 있더라...\n", name);
-                    Thread.sleep(2000);
-                    System.out.printf("\n[Robot: %s]: 으으음...\n", name);
-                    Thread.sleep(1000);
-                    System.out.printf("\n[Robot: %s]: 음..\n", name);
-                    Thread.sleep(2000);
-                    System.out.printf("\n[Robot: %s]: 이제 뭐하지 ?\n", name);
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                break;
+                System.out.printf("[Robot: %s]: \uD83E\uDD67 파이를 던지는 중\n", name);
+                Thread.sleep(500);
             }
-
-            if(useBattery(5)) {
-                System.out.printf("\n[Robot: %s]: \uD83E\uDD67 파이를 던지는 중\n", name);
-            } else {
-                break;
-            }
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        } catch (InterruptedException e) {
+            System.out.printf("\n[ERROR]: 스레드 예외처리 발생: %s", e.getMessage());
+        } finally {
+            System.out.printf("\n[Robot: %s]: 내가 뭐 하려고 했는지 기억나시나요?\n", name);
         }
-
-        isBusy = false;
     }
 
     @Override
-    public void showCommand(){
+    public void showCommand() {
         super.showCommand();
         System.out.print("1. 파이 던지기\n");
         System.out.print("선택: ");
@@ -65,18 +30,15 @@ public class NEPTR extends BatteryRobot implements Runnable {
 
     @Override
     public void action(int selectCommand) {
-        if(!powerStatus){
-            System.out.printf("[Robot: %s]: 전원을 먼저 켜주면 안될까요?\n", name);
-            return;
-        } else if (isBusy) {
-            System.out.printf("[Robot: %s]: 저는 파이 만드느라 바빠요\n", name);
+        if (!powerStatus) {
+            System.out.printf("[System]: %s 전원을 먼저 켜주면 안될까요?\n", name);
             return;
         }
 
         switch (selectCommand) {
             case 1:
-                Thread t1 = new Thread(this);
-                t1.start();
+                System.out.printf("[Robot: %s]: Never ending pie throwing ~~\n", name);
+                throwPie();
                 break;
             default:
                 break;
