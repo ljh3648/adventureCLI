@@ -15,9 +15,11 @@ public class NEPTR extends BatteryRobot {
                 Thread.sleep(500);
             }
         } catch (InterruptedException e) {
-            System.out.printf("\n[ERROR]: 스레드 예외처리 발생: %s", e.getMessage());
+            System.out.printf("[ERROR]: 스레드 예외처리 발생: %s\n", e.getMessage());
         } finally {
-            System.out.printf("\n[Robot: %s]: 내가 뭐 하려고 했는지 기억나시나요?\n", name);
+            if (powerStatus) {
+                System.out.printf("[Robot: %s]: 내가 뭐 하려고 했는지 기억나시나요?\n", name);
+            }
         }
     }
 
