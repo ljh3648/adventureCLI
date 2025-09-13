@@ -34,7 +34,8 @@
     }
 
     public void playSong() {
-        //노래 재생 시간마다 한 줄 씩 부르는거 괜찮은 듯
+        // 마지막으로 구현 해야 할 메서드 이지만 NEPTR에서 이미 비슷한 기능이 구현 돼 생략했습니다...
+        System.out.printf("[Robot: %s]: 헤헤 노래는 잘 못부르는 걸요.!n", this.name);
     }
 
     @Override
