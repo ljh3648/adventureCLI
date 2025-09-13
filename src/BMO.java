@@ -1,25 +1,8 @@
-public class BMO extends BatteryRobot implements Runnable {
-    boolean isQuiet = false;
+public class BMO extends BatteryRobot {
+    boolean isQuiet;
 
     BMO() {
         super("BMO");
-    }
-    // 파워가 켜져 있는 상태에서 애가 혼자 말해 일정 시간이 지날때마다
-    // 근데 그걸 quietMode로 몇초간은 재울 수 있어
-    @Override
-    public void run() {
-        while(true) {
-            try {
-                Thread.sleep(1000 * 5);
-                if(powerStatus && !isQuiet) {
-                    if(useBattery(1)){
-                        System.out.printf("[Robot: %s]: 혼잣말 궁시렁 궁시렁.....\n", name);
-                    }
-                }
-            } catch (InterruptedException e) {
-                break;
-            }
-        }
     }
 
 
@@ -28,8 +11,9 @@ public class BMO extends BatteryRobot implements Runnable {
             return;
         }
         isQuiet = true;
-        System.out.printf("[Robot: %s]: 네... 몇초 정도는 조용히 있어볼게요.\n", name);
         try {
+            Thread.sleep(10);
+            System.out.printf("\n[Robot: %s]: 네... 몇초 정도는 조용히 있어볼게요.\n", name);
             Thread.sleep(1000 * 30);
         } catch (InterruptedException e) {
             isQuiet = false;

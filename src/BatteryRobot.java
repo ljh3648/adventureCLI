@@ -6,10 +6,18 @@ public class BatteryRobot extends Robot {
         this.batteryLevel = 100;
     }
 
-    public void chargeBattery() {
-        batteryLevel = 100;
-        System.out.printf("[Robot: %s]: 배터리를 충전이 완료되었습니다.\n", name);
+    public int getBatteryLevel() {
+        return batteryLevel;
     }
+
+    public void setBatteryLevel(int batteryLevel) {
+        this.batteryLevel = batteryLevel;
+    }
+
+//    public void chargeBattery() {
+//        batteryLevel = 100;
+//        System.out.printf("[Robot: %s]: 배터리를 충전이 완료되었습니다.\n", name);
+//    }
 
     public boolean useBattery(int amount) {
         if(batteryLevel - amount < 0) {
@@ -35,22 +43,22 @@ public class BatteryRobot extends Robot {
         System.out.printf("[Robot: %s]: Power status: %s Battery level: %d\n", name, powerStatus ? "ON" : "OFF", batteryLevel);
     }
 
-    @Override
-    public void showPowerControlMenu() {
-        super.showPowerControlMenu();
-        System.out.print("3. 배터리 충전\n");
-        System.out.print("선택: ");
-    }
+//    @Override
+//    public void showPowerControlMenu() {
+//        super.showPowerControlMenu();
+//        System.out.print("3. 배터리 충전\n");
+//        System.out.print("선택: ");
+//    }
 
-    @Override
-    public void powerController(int selectCommand) {
-        switch (selectCommand) {
-            case 3:
-                chargeBattery();
-                break;
-            default:
-                super.powerController(selectCommand);
-                break;
-        }
-    }
+//    @Override
+//    public void powerController(int selectCommand) {
+//        switch (selectCommand) {
+//            case 3:
+//                chargeBattery();
+//                break;
+//            default:
+//                super.powerController(selectCommand);
+//                break;
+//        }
+//    }
 }

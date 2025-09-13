@@ -7,11 +7,10 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        ChargeStation cs = new ChargeStation();
+
         List<Robot> robots = new ArrayList<>();
-        BMO bmo = new BMO();
-        robots.add(bmo);
-        Thread thread = new Thread(bmo);
-        thread.start();
+        robots.add(new BMO());
         robots.add(new NEPTR());
 
         System.out.print("Adventure CLI!\n");
@@ -43,7 +42,7 @@ public class Main {
                 case 0:
                     isRunning = false;
                     System.out.print("[System]: 프로그램이 종료됩니다.\n");
-                    break;
+                    System.exit(0);
                 default:
                     System.out.print("[System]: 잘못된 입력입니다.\n");
                     break;
@@ -57,6 +56,7 @@ public class Main {
         System.out.print("1. 로봇 상태\n");
         System.out.print("2. 로봇 전원 관리\n");
         System.out.print("3. 로봇 명령\n");
+        System.out.print("4. 충전소 가기\n");
         System.out.print("0. CLI 프로그램 종료.\n");
         System.out.print("선택: ");
     }

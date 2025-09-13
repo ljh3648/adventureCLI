@@ -1,5 +1,5 @@
-public class NEPTR extends BatteryRobot {
-    private boolean isBusy = false;
+public class NEPTR extends BatteryRobot implements Runnable {
+    private boolean isBusy;
     private double forgetToThrowPieChance;
 
     NEPTR(){
@@ -10,6 +10,11 @@ public class NEPTR extends BatteryRobot {
     NEPTR(double forgetToThrowPieChance){
         this();
         this.forgetToThrowPieChance = forgetToThrowPieChance;
+    }
+
+    @Override
+    public void run() {
+        throwPie();
     }
 
     void throwPie() {
@@ -60,13 +65,18 @@ public class NEPTR extends BatteryRobot {
 
     @Override
     public void action(int selectCommand) {
-        if(powerStatus == false){
+        if(!powerStatus){
             System.out.printf("[Robot: %s]: 전원을 먼저 켜주면 안될까요?\n", name);
             return;
+        } else if (isBusy) {
+            System.out.printf("[Robot: %s]: 저는 파이 만드느라 바빠요\n", name);
+            return;
         }
+
         switch (selectCommand) {
             case 1:
-                throwPie();
+                Thread t1 = new Thread(this);
+                t1.start();
                 break;
             default:
                 break;

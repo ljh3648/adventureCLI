@@ -33,6 +33,7 @@ public class Robot {
         System.out.printf("======= [Robot: %s] Power Control Menu =======\n", name);
         System.out.print("1. 전원 켬\n");
         System.out.print("2. 전원 끔\n");
+        System.out.print("선택: ");
     }
 
     public void powerController(int selectCommand) {
